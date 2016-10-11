@@ -1,17 +1,23 @@
-# Read dietary data CSV
-Diet1 <- read.csv(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/DataEntry_24HR_V19v1.csv")
-compositionUSDA1<-(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/sr27abxl/ABBREV.csv")
-compositionINCAP1<-(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/TCA_INCAP_2006.csv")
+# Read dietary data CSV ***strings as factors=F
+Diet1 <- read.csv(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/DataEntry_24HR_V19v1.csv", stringsAsFactors = FALSE)
+head(Diet1)
+compositionUSDA1<-read.csv(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/sr27abxl/ABBREV.csv", stringsAsFactors = FALSE)
+compositionINCAP1<-read.csv(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/TCA_INCAP_2006.csv", stringsAsFactors = FALSE)
+
+#Verify that entries are characters
+class(Diet1$Alimento)
+class(Diet1$Descripcion.Marca)
 
 #check names
 names(Diet1)
-class(Diet1$Alimento)
+head(Diet1)
 
-#bring dataset into R memory
-attach(Diet1)
-
-#Concatenate Columns
+#concatenation prep
 Alimento<-(Diet1$Alimento)
-Descricion.Marka<-(Diet1$Descricion.Marka)
-comb_foodname1<-cbind(Alimento, Descricion.Marka)
-print(comb_foodname1)
+Descripcion.Marka<-(Diet1$Descripcion.Marka)
+
+#combine columns by pasting Marca into Alimento
+Diet1$comb_foodname1 <- paste(Diet1$Alimento, Diet1$Descripcion.Marca, sep = " ")
+
+#remove excess variables
+rm()
