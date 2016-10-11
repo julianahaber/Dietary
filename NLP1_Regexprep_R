@@ -1,0 +1,17 @@
+# Read dietary data CSV
+Diet1 <- read.csv(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/DataEntry_24HR_V19v1.csv")
+compositionUSDA1<-(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/sr27abxl/ABBREV.csv")
+compositionINCAP1<-(file="/Users/Juliana/Documents/Research_Projects/2015 Guatemala/Diet/Food Composition Databases/TCA_INCAP_2006.csv")
+
+#check names
+names(Diet1)
+class(Diet1$Alimento)
+
+#bring dataset into R memory
+attach(Diet1)
+
+#Concatenate Columns
+Alimento<-(Diet1$Alimento)
+Descricion.Marka<-(Diet1$Descricion.Marka)
+comb_foodname1<-cbind(Alimento, Descricion.Marka)
+print(comb_foodname1)
